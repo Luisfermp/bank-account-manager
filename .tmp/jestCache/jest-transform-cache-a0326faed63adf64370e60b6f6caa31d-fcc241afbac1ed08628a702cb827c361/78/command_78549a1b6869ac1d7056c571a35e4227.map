@@ -1,1 +1,0 @@
-{"file":"/home/optivamedia/Documents/Personal/bank-account-manager/server/contexts/shared/domain/bus/command/command.ts","mappings":";;AAAA,MAA8B,OAAO;CAAG;AAAxC,0BAAwC","names":[],"sources":["/home/optivamedia/Documents/Personal/bank-account-manager/server/contexts/shared/domain/bus/command/command.ts"],"sourcesContent":["export default abstract class Command {}\n"],"version":3}
