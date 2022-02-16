@@ -17,6 +17,9 @@ export default class BalanceSaver {
     async run(accountId: AccountId, amount: Amount): Promise<void> {
         let account = await this.repository.get(accountId);
 
+        //* On a real api, this must thrown an AccountNotFoundError
+        //* Why? Because you can't save a balance over an unexisting account
+        //* So I prefer to make this "grant" to enhance api use experience
         if (!account) account = Account.createBalance(accountId, amount);
         else account.updateBalance(amount);
 

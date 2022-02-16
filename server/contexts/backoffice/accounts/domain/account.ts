@@ -35,7 +35,7 @@ export default class Account extends AggregateRoot {
 
     static fromPrimitives({
         id, updatedAt, balance
-    }: {id: string, balance: number, updatedAt: string }): Account {
+    }: {id: number, balance: number, updatedAt: string }): Account {
         return new Account(
             new AccountId(id),
             new Balance(balance),
@@ -44,7 +44,7 @@ export default class Account extends AggregateRoot {
     }
 
     toPrimitives(): {
-    id: string;
+    id: number;
     balance: number;
     updatedAt: string
     } {

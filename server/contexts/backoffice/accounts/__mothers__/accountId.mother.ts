@@ -1,12 +1,12 @@
-import * as faker from 'faker';
 import AccountId from '@backoffice/accounts/domain/accountId';
+import IntegerMother from '@shared/__mothers__/integer.mother';
 
 export default class AccountIdMother {
-    static create(value: string): AccountId {
+    static create(value: number): AccountId {
         return new AccountId(value);
     }
 
     static random(): AccountId {
-        return AccountIdMother.create(faker.datatype.uuid());
+        return AccountIdMother.create(IntegerMother.randomPositive());
     }
 }

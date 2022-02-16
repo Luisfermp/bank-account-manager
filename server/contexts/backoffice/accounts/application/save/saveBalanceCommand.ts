@@ -1,12 +1,12 @@
 import Command from '@shared/domain/bus/command/command';
 
 type Params = {
-  accountId: string,
+  accountId: number,
   amount: number
 }
 
 export default class SaveBalanceCommand extends Command {
-    readonly accountId: string;
+    readonly accountId: number;
 
     readonly amount: number;
 

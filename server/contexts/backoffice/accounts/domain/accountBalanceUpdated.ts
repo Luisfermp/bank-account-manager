@@ -1,7 +1,7 @@
 import { DomainEvent } from '@shared/domain/bus/event/domainEvent';
 
 type AccountBalanceUpdatedDomainEventBody = {
-  id: string;
+  id: number;
   balance: number;
   updatedAt: string;
   amount: number
@@ -10,7 +10,7 @@ type AccountBalanceUpdatedDomainEventBody = {
 export default class AccountBalanceUpdatedDomainEvent extends DomainEvent {
     static readonly EVENT_NAME = 'comalatech.backoffice.1.event.account.balance.updated';
 
-    readonly id: string;
+    readonly id: number;
 
     readonly balance: number;
 
@@ -26,7 +26,7 @@ export default class AccountBalanceUpdatedDomainEvent extends DomainEvent {
         eventId,
         occurredOn
     }: AccountBalanceUpdatedDomainEventBody & { eventId?: string; occurredOn?: Date }) {
-        super(AccountBalanceUpdatedDomainEvent.EVENT_NAME, accountId, eventId, occurredOn);
+        super(AccountBalanceUpdatedDomainEvent.EVENT_NAME, `${accountId}`, eventId, occurredOn);
         this.id = accountId;
         this.balance = balance;
         this.updatedAt = updatedAt;
