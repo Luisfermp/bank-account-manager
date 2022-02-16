@@ -1,0 +1,35 @@
+{
+    "cacheDirectory": ".tmp/jestCache",
+    "collectCoverageFrom": [
+        "**/*.{ts,tsx}",
+        "!**/node_modules/**",
+        "!src/apps/**",
+        "!**/*.test.{ts,tsx}",
+        "!**/*.mock.{ts,tsx}",
+        "!**/*.mother.{ts,tsx}"
+    ],
+    "coverageDirectory": "./reports/coverage",
+    "coverageReporters": [
+        "lcov",
+        "text-summary"
+    ],
+    "coverageThreshold": {
+        "global": {
+            "branches": 95,
+            "functions": 95,
+            "lines": 95,
+            "statements": 95
+        }
+    },
+    "moduleNameMapper": {
+        "@api/(.*)$": "<rootDir>/server/api/$1",
+        "@backoffice/(.*)$": "<rootDir>/server/contexts/backoffice/$1",
+        "@common/(.*)$": "<rootDir>/server/common/$1",
+        "@shared/(.*)$": "<rootDir>/server/contexts/shared/$1"
+    },
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+        "<rootDir>/(.*)/persistence/(.*)"
+    ]
+}

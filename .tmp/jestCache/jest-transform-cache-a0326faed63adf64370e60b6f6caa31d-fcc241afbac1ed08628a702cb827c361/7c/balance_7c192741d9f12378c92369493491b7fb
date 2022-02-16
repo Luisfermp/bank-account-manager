@@ -1,0 +1,11 @@
+6e93611d1b0e00d8bd85abf2e964c795
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const numberValueObject_1 = __importDefault(require("@shared/domain/numberValueObject"));
+class Balance extends numberValueObject_1.default {
+}
+exports.default = Balance;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb3B0aXZhbWVkaWEvRG9jdW1lbnRzL1BlcnNvbmFsL2JhbmstYWNjb3VudC1tYW5hZ2VyL3NlcnZlci9jb250ZXh0cy9iYWNrb2ZmaWNlL2FjY291bnRzL2RvbWFpbi9iYWxhbmNlLnRzIiwibWFwcGluZ3MiOiI7Ozs7O0FBQUEseUZBQWlFO0FBRWpFLE1BQXFCLE9BQVEsU0FBUSwyQkFBaUI7Q0FBRztBQUF6RCwwQkFBeUQiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL2hvbWUvb3B0aXZhbWVkaWEvRG9jdW1lbnRzL1BlcnNvbmFsL2JhbmstYWNjb3VudC1tYW5hZ2VyL3NlcnZlci9jb250ZXh0cy9iYWNrb2ZmaWNlL2FjY291bnRzL2RvbWFpbi9iYWxhbmNlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBOdW1iZXJWYWx1ZU9iamVjdCBmcm9tICdAc2hhcmVkL2RvbWFpbi9udW1iZXJWYWx1ZU9iamVjdCc7XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEJhbGFuY2UgZXh0ZW5kcyBOdW1iZXJWYWx1ZU9iamVjdCB7fVxuIl0sInZlcnNpb24iOjN9

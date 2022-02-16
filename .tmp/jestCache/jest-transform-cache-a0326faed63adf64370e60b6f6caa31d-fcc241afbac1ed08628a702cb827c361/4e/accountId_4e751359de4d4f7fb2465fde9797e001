@@ -1,0 +1,11 @@
+ec6f045dcf5ef47caf754a4a20458ebf
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const uuid_1 = __importDefault(require("@shared/domain/uuid"));
+class AccountId extends uuid_1.default {
+}
+exports.default = AccountId;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvb3B0aXZhbWVkaWEvRG9jdW1lbnRzL1BlcnNvbmFsL2JhbmstYWNjb3VudC1tYW5hZ2VyL3NlcnZlci9jb250ZXh0cy9iYWNrb2ZmaWNlL2FjY291bnRzL2RvbWFpbi9hY2NvdW50SWQudHMiLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSwrREFBdUM7QUFFdkMsTUFBcUIsU0FBVSxTQUFRLGNBQUk7Q0FBRztBQUE5Qyw0QkFBOEMiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiL2hvbWUvb3B0aXZhbWVkaWEvRG9jdW1lbnRzL1BlcnNvbmFsL2JhbmstYWNjb3VudC1tYW5hZ2VyL3NlcnZlci9jb250ZXh0cy9iYWNrb2ZmaWNlL2FjY291bnRzL2RvbWFpbi9hY2NvdW50SWQudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFV1aWQgZnJvbSAnQHNoYXJlZC9kb21haW4vdXVpZCc7XG5cbmV4cG9ydCBkZWZhdWx0IGNsYXNzIEFjY291bnRJZCBleHRlbmRzIFV1aWQge31cbiJdLCJ2ZXJzaW9uIjozfQ==
