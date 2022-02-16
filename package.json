@@ -51,6 +51,7 @@
   "main": "dist/index.js",
   "name": "bank-account-manager",
   "scripts": {
+    "postinstall": "npx husky install",
     "compile": "ts-node build.ts && tsc",
     "dev": "nodemon server/index.ts | pino-pretty",
     "dev:debug": "nodemon --exec \"node -r ts-node/register --inspect-brk\" server/index.ts | pino-pretty",
