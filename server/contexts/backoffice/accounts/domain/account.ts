@@ -35,10 +35,10 @@ export default class Account extends AggregateRoot {
 
     static fromPrimitives({
         id, updatedAt, balance
-    }: {id: number, balance: number, updatedAt: string }): Account {
+    }: {id: any, balance: any, updatedAt: string }): Account {
         return new Account(
-            new AccountId(id),
-            new Balance(balance),
+            new AccountId(parseInt(id, 10)),
+            new Balance(parseFloat(balance)),
             new DatetimeValueObject(updatedAt)
         );
     }

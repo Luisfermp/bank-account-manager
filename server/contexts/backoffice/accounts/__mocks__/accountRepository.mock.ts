@@ -5,20 +5,20 @@ import AccountRepository from '@backoffice/accounts/domain/accountRepository';
 import { Nullable } from '@shared/domain/nullable';
 
 export default class AccountRepositoryMock implements AccountRepository {
-    private getFn = jest.fn();
+    private findFn = jest.fn();
 
     private saveFn = jest.fn();
 
-    get(accountId: AccountId): Promise<Nullable<Account>> {
-        return this.getFn(accountId);
+    find(accountId: AccountId): Promise<Nullable<Account>> {
+        return this.findFn(accountId);
     }
 
     whenGetThenReturn(account: Account): void {
-        this.getFn.mockResolvedValue(account);
+        this.findFn.mockResolvedValue(account);
     }
 
     assertGetIsCalled(accountId: AccountId): void {
-        expect(this.getFn).toHaveBeenCalledWith(accountId);
+        expect(this.findFn).toHaveBeenCalledWith(accountId);
     }
 
     save(account: Account): Promise<void> {
