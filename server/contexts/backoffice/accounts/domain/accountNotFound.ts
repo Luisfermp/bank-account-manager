@@ -1,5 +1,5 @@
 export default class AccountNotFound extends Error {
-    constructor(accountId: string) {
+    constructor(accountId: number) {
         super(`Account ${accountId} doesn't exist`);
     }
 }

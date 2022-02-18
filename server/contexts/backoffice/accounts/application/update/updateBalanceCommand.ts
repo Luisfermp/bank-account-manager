@@ -5,7 +5,7 @@ type Params = {
   amount: number
 }
 
-export default class SaveBalanceCommand extends Command {
+export default class UpdateBalanceCommand extends Command {
     readonly accountId: number;
 
     readonly amount: number;
