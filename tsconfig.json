@@ -27,10 +27,8 @@
     "paths": {
       "@shared/*": ["server/contexts/shared/*"],
       "@common/*": ["server/common/*"],
-      "@api/*": ["server/api/*"],
       "@backoffice/*": ["server/contexts/backoffice/*"],
     }
-
   },
   "include": ["server/**/*.ts"],
   "exclude": ["node_modules"]

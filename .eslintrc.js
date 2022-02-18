@@ -63,7 +63,6 @@ module.exports = {
             alias: {
                 map: [
                     ['@shared', './server/contexts/shared'],
-                    ['@api', './server/api'],
                     ['@common', './server/common'],
                     ['@backoffice', './server/contexts/backoffice']
                 ],

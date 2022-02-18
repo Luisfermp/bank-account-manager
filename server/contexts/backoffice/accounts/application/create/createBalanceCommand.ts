@@ -2,17 +2,17 @@ import Command from '@shared/domain/bus/command/command';
 
 type Params = {
   accountId: number,
-  amount: number
+  balance: number
 }
 
 export default class CreateBalanceCommand extends Command {
     readonly accountId: number;
 
-    readonly amount: number;
+    readonly balance: number;
 
-    constructor({ accountId, amount }: Params) {
+    constructor({ accountId, balance }: Params) {
         super();
         this.accountId = accountId;
-        this.amount = amount;
+        this.balance = balance;
     }
 }

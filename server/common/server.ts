@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Router } from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import http from 'http';
@@ -7,14 +7,20 @@ import cookieParser from 'cookie-parser';
 import * as OpenApiValidator from 'express-openapi-validator';
 import l from '@shared/infrastructure/logger';
 
-import errorHandler from '@api/middlewares/error.handler';
+import errorHandler from '@common/middlewares/error.handler';
+import InMemorySyncEventBus from '@shared/infrastructure/eventBus/inMemorySyncEventBus';
+import RedisFactory from '@shared/infrastructure/persistence/redis/redisFactory';
+import initAccountInfra from '@backoffice/accounts/infrastructure/init';
+import RedisAccountRepository from '@backoffice/accounts/infrastructure/persistence/redis/redisAccountRepository';
+import { RedisClientType } from 'redis';
 
 const app = express();
 
 export default class ExpressServer {
-    private routes: (application: Application) => void;
+    private routes: Router[];
 
     constructor() {
+        this.routes = [];
         const root = path.normalize(`${__dirname}/../..`);
         app.use(bodyParser.json({ limit: process.env.REQUEST_LIMIT || '100kb' }));
         app.use(
@@ -28,12 +34,12 @@ export default class ExpressServer {
         app.use(express.static(`${root}/public`));
 
         // eslint-disable-next-line one-var
-        const apiSpec = path.join(__dirname, 'api.yml'),
+        const apiSpec = path.join(__dirname, 'bank-account-manager-api.yml'),
             validateResponses = !!(
                 process.env.OPENAPI_ENABLE_RESPONSE_VALIDATION
       && process.env.OPENAPI_ENABLE_RESPONSE_VALIDATION.toLowerCase() === 'true'
             );
-        app.use(process.env.OPENAPI_SPEC || '/spec', express.static(apiSpec));
+        app.use('/spec', express.static(apiSpec));
         app.use(
             OpenApiValidator.middleware({
                 apiSpec,
@@ -43,8 +49,20 @@ export default class ExpressServer {
         );
     }
 
-    router(routes: (application: Application) => void): ExpressServer {
-        routes(app);
+    async initInfra(): Promise<ExpressServer> {
+        const redisClient = await RedisFactory.createClient(),
+            eventBus = new InMemorySyncEventBus(),
+            redisAccountRepository = new RedisAccountRepository(redisClient as RedisClientType);
+
+        this.routes.push(initAccountInfra(redisAccountRepository, eventBus));
+
+        return this;
+    }
+
+    router(): ExpressServer {
+        this.routes.forEach((r) => {
+            app.use(r);
+        });
         app.use(errorHandler);
         return this;
     }

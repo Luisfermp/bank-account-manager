@@ -22,7 +22,6 @@
         }
     },
     "moduleNameMapper": {
-        "@api/(.*)$": "<rootDir>/server/api/$1",
         "@backoffice/(.*)$": "<rootDir>/server/contexts/backoffice/$1",
         "@common/(.*)$": "<rootDir>/server/common/$1",
         "@shared/(.*)$": "<rootDir>/server/contexts/shared/$1"

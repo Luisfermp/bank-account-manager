@@ -1,0 +1,3 @@
+import CreateAccountBalanceController from '@backoffice/accounts/infrastructure/controllers/createAccountBalanceController';
+
+export type AccountExpressControllers = CreateAccountBalanceController

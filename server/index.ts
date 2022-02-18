@@ -1,6 +1,6 @@
 import '@common/env';
-import Server from '@common/server';
-import routes from '@api/routes/routes';
+import ExpressServer from '@common/server';
 
 const port = parseInt(process.env.PORT ?? '3000', 10);
-export default new Server().router(routes).listen(port);
+
+export default new ExpressServer().initInfra().then((s) => s.router().listen(port));

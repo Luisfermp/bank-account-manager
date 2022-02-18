@@ -19,8 +19,8 @@ export default class CreateBalanceCommandHandler implements CommandHandler<Creat
 
     async handle(command: CreateBalanceCommand): Promise<void> {
         const accountId = new AccountId(command.accountId),
-            amount = new Amount(command.amount);
+            balance = new Amount(command.balance);
 
-        await this.creator.run(accountId, amount);
+        await this.creator.run(accountId, balance);
     }
 }
