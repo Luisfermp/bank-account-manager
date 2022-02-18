@@ -1,11 +1,14 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const globalJest = require('./jest.config.json');
+/* eslint-disable @typescript-eslint/no-var-requires */
+const
+// eslint-disable-next-line import/no-extraneous-dependencies
+    jestTestContainersPreset = require('@trendyol/jest-testcontainers/jest-preset'),
+    globalJest = require('./jest.config.json');
 
 delete globalJest.testPathIgnorePatterns;
 
 module.exports = {
-    preset: '@trendyol/jest-testcontainers',
     ...globalJest,
     testTimeout: 30000,
-    testMatch: ['**/persistence/**/*.test.ts']
+    testMatch: ['**/persistence/**/*.test.ts'],
+    ...jestTestContainersPreset
 };

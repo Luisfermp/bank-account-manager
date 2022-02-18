@@ -15,7 +15,7 @@ export default class BalanceUpdater {
     }
 
     async run(accountId: AccountId, amount: Amount): Promise<void> {
-        const account = await this.repository.get(accountId);
+        const account = await this.repository.find(accountId);
 
         if (!account) throw new AccountNotFound(accountId.value);
 

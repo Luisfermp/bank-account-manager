@@ -16,7 +16,7 @@ export default class BalanceCreator {
     }
 
     async run(accountId: AccountId, amount: Amount): Promise<void> {
-        let account = await this.repository.get(accountId);
+        let account = await this.repository.find(accountId);
 
         if (account) throw new AccountFound(accountId.value);
 
