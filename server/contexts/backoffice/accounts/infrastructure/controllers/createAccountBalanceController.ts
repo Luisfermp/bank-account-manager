@@ -1,15 +1,17 @@
 import CreateBalanceCommand from '@backoffice/accounts/application/create/createBalanceCommand';
 import CreateBalanceCommandHandler from '@backoffice/accounts/application/create/createBalanceCommandHandler';
+import BaseController from '@shared/infrastructure/infrastructure/express/baseController';
 import { Request, Response } from 'express';
 
-export default class CreateAccountBalanceController {
+export default class CreateAccountBalanceController extends BaseController {
     #handler: CreateBalanceCommandHandler;
 
     constructor(handler: CreateBalanceCommandHandler) {
+        super();
         this.#handler = handler;
     }
 
-    async run(req: Request, res: Response): Promise<void> {
+    async runOperation(req: Request, res: Response): Promise<void> {
         const accountId = parseInt(req.params.id, 10),
             amount = req.body.balance,
             command = new CreateBalanceCommand({ accountId, balance: amount });

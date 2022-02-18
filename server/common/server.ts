@@ -7,7 +7,6 @@ import cookieParser from 'cookie-parser';
 import * as OpenApiValidator from 'express-openapi-validator';
 import l from '@shared/infrastructure/logger';
 
-import errorHandler from '@common/middlewares/error.handler';
 import InMemorySyncEventBus from '@shared/infrastructure/eventBus/inMemorySyncEventBus';
 import RedisFactory from '@shared/infrastructure/persistence/redis/redisFactory';
 import initAccountInfra from '@backoffice/accounts/infrastructure/init';
@@ -63,7 +62,7 @@ export default class ExpressServer {
         this.routes.forEach((r) => {
             app.use(r);
         });
-        app.use(errorHandler);
+
         return this;
     }
 

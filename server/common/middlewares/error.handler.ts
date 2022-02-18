@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import AccountNotFound from '@backoffice/accounts/domain/accountNotFound';
 import AccountFound from '@backoffice/accounts/domain/accountFound';
 import InvalidArgumentError from '@shared/domain/invalidArgumentError';
@@ -15,7 +15,9 @@ const errorCodeDiccionary = {
 export default function errorHandler(
     err: CustomError,
     _req: Request,
-    res: Response
+    res: Response,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _next: NextFunction
 ): void {
     res.status(errorCodeDiccionary[err.code] ?? 500).json({
         code: err.code ?? 500,
