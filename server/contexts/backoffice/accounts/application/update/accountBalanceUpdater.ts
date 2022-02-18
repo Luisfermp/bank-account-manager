@@ -4,7 +4,7 @@ import type AccountId from '@backoffice/accounts/domain/accountId';
 import type Amount from '@backoffice/accounts/domain/amount';
 import AccountNotFound from '@backoffice/accounts/domain/accountNotFound';
 
-export default class BalanceUpdater {
+export default class AccountBalanceUpdater {
     private repository: AccountRepository;
 
     private bus: EventBus;

@@ -1,5 +1,5 @@
 import { DomainEvent } from '@shared/domain/bus/event/domainEvent';
-import DomainEventMapping from '@shared/infrastructure/eventBus/domainEventMapping';
+import DomainEventMapping from '@shared/infrastructure/bus/event/domainEventMapping';
 
 export default class DomainEventJsonDeserializer {
     private mapping: DomainEventMapping;

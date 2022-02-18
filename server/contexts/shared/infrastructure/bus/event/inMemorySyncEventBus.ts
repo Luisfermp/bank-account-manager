@@ -8,7 +8,6 @@ type Subscription = {
     originalCallback: Function;
 };
 
-//* TODO: Make test
 export default class InMemorySyncEventBus implements EventBus {
     private subscriptions: Map<string, Array<Subscription>>;
 

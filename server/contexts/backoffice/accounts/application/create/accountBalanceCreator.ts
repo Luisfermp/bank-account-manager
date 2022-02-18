@@ -5,7 +5,7 @@ import type Amount from '@backoffice/accounts/domain/amount';
 import Account from '@backoffice/accounts/domain/account';
 import AccountFound from '@backoffice/accounts/domain/accountFound';
 
-export default class BalanceCreator {
+export default class AccountBalanceCreator {
     private repository: AccountRepository;
 
     private bus: EventBus;

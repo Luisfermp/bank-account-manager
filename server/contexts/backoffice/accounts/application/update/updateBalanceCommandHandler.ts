@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import BalanceUpdater from '@backoffice/accounts/application/update/balanceUpdater';
+import AccountBalanceUpdater from '@backoffice/accounts/application/update/accountBalanceUpdater';
 import Command from '@shared/domain/bus/command/command';
 import { CommandHandler } from '@shared/domain/bus/command/commandHandler';
 import Amount from '@backoffice/accounts/domain/amount';
@@ -7,9 +7,9 @@ import UpdateBalanceCommand from '@backoffice/accounts/application/update/update
 import AccountId from '@backoffice/accounts/domain/accountId';
 
 export default class UpdateBalanceCommandHandler implements CommandHandler<UpdateBalanceCommand> {
-    private updater: BalanceUpdater;
+    private updater: AccountBalanceUpdater;
 
-    constructor(updater: BalanceUpdater) {
+    constructor(updater: AccountBalanceUpdater) {
         this.updater = updater;
     }
 

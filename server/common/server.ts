@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import * as OpenApiValidator from 'express-openapi-validator';
 import l from '@shared/infrastructure/logger';
 
-import InMemorySyncEventBus from '@shared/infrastructure/eventBus/inMemorySyncEventBus';
+import InMemorySyncEventBus from '@shared/infrastructure/bus/event/inMemorySyncEventBus';
 import RedisFactory from '@shared/infrastructure/persistence/redis/redisFactory';
 import initAccountInfra from '@backoffice/accounts/infrastructure/init';
 import RedisAccountRepository from '@backoffice/accounts/infrastructure/persistence/redis/redisAccountRepository';

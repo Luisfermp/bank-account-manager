@@ -1,6 +1,6 @@
 import Command from '@shared/domain/bus/command/command';
 import { CommandBus } from '@shared/domain/bus/command/commandBus';
-import CommandHandlersInformation from '@shared/infrastructure/commandBus/commandHandlersInformation';
+import CommandHandlersInformation from '@shared/infrastructure/bus/command/commandHandlersInformation';
 
 export default class InMemoryCommandBus implements CommandBus {
     private commandHandlersInformation: CommandHandlersInformation;

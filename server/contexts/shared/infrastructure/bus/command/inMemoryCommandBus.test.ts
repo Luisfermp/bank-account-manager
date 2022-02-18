@@ -3,8 +3,8 @@
 import Command from '@shared/domain/bus/command/command';
 import { CommandHandler } from '@shared/domain/bus/command/commandHandler';
 import CommandNotRegisteredError from '@shared/domain/bus/command/commandNotRegisteredError';
-import CommandHandlersInformation from '@shared/infrastructure/commandBus/commandHandlersInformation';
-import InMemoryCommandBus from '@shared/infrastructure/commandBus/inMemoryCommandBus';
+import CommandHandlersInformation from '@shared/infrastructure/bus/command/commandHandlersInformation';
+import InMemoryCommandBus from '@shared/infrastructure/bus/command/inMemoryCommandBus';
 
 class UnhandledCommand extends Command {
     static COMMAND_NAME = 'unhandled.command';

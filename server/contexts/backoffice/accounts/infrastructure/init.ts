@@ -1,9 +1,9 @@
 import UpdateAccountBalanceController from '@backoffice/accounts/infrastructure/controllers/updateAccountBalanceController';
-import BalanceUpdater from '@backoffice/accounts/application/update/balanceUpdater';
+import AccountBalanceUpdater from '@backoffice/accounts/application/update/accountBalanceUpdater';
 import UpdateBalanceCommandHandler from '@backoffice/accounts/application/update/updateBalanceCommandHandler';
 import express, { Router } from 'express';
 import AccountRepository from '@backoffice/accounts/domain/accountRepository';
-import BalanceCreator from '@backoffice/accounts/application/create/balanceCreator';
+import AccountBalanceCreator from '@backoffice/accounts/application/create/accountBalanceCreator';
 import CreateBalanceCommandHandler from '@backoffice/accounts/application/create/createBalanceCommandHandler';
 import { EventBus } from '@shared/domain/bus/event/eventBus';
 import CreateAccountBalanceController from '@backoffice/accounts/infrastructure/controllers/createAccountBalanceController';
@@ -12,8 +12,8 @@ export default function initAccountInfra(
     repository: AccountRepository,
     bus: EventBus
 ): Router {
-    const creator = new BalanceCreator(repository, bus),
-        updater = new BalanceUpdater(repository, bus),
+    const creator = new AccountBalanceCreator(repository, bus),
+        updater = new AccountBalanceUpdater(repository, bus),
         createBalanceCommandHandler = new CreateBalanceCommandHandler(creator),
         createBalanceController = new CreateAccountBalanceController(
             createBalanceCommandHandler

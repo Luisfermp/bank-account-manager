@@ -3,13 +3,13 @@ import Command from '@shared/domain/bus/command/command';
 import { CommandHandler } from '@shared/domain/bus/command/commandHandler';
 import Amount from '@backoffice/accounts/domain/amount';
 import AccountId from '@backoffice/accounts/domain/accountId';
-import BalanceCreator from '@backoffice/accounts/application/create/balanceCreator';
+import AccountBalanceCreator from '@backoffice/accounts/application/create/accountBalanceCreator';
 import CreateBalanceCommand from '@backoffice/accounts/application/create//createBalanceCommand';
 
 export default class CreateBalanceCommandHandler implements CommandHandler<CreateBalanceCommand> {
-    private creator: BalanceCreator;
+    private creator: AccountBalanceCreator;
 
-    constructor(creator: BalanceCreator) {
+    constructor(creator: AccountBalanceCreator) {
         this.creator = creator;
     }
 
