@@ -4,8 +4,8 @@ import config from './tsconfig.json';
 
 const { outDir } = config.compilerOptions;
 
-s.rm('-rf', outDir);
+s.rm('-rf', 'dis');
 s.mkdir(outDir);
 s.cp('.env', `${outDir}/.env`);
-s.mkdir('-p', `${outDir}/common/swagger`);
-s.cp('.spec/bank-account-manager-api.yml', `${outDir}/.spec/bank-account-manager-api.yml`);
+s.mkdir('-p', `${outDir}/common`);
+s.cp('./server/common/bank-account-manager-api.yml', `${outDir}/common/bank-account-manager-api.yml`);

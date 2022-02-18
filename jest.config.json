@@ -9,10 +9,7 @@
         "!**/*.mother.{ts,tsx}"
     ],
     "coverageDirectory": "./reports/coverage",
-    "coverageReporters": [
-        "lcov",
-        "text-summary"
-    ],
+    "coverageReporters": ["lcov", "text-summary"],
     "coverageThreshold": {
         "global": {
             "branches": 95,
@@ -28,7 +25,5 @@
     },
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-        "<rootDir>/(.*)/persistence/(.*)"
-    ]
+    "testPathIgnorePatterns": ["<rootDir>/(.*)/persistence/(.*)", "<rootDir>/dist/(.*)"]
 }
