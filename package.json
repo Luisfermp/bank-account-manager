@@ -52,6 +52,7 @@
     "typescript": "^4.5.2",
     "rimraf": "^3.0.2"
   },
+  "license": "ISC",
   "main": "dist/index.js",
   "name": "bank-account-manager",
   "scripts": {
