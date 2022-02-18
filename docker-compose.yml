@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  redis:
+    profiles: ["infra"]
+    image: redis
+    restart: always
+    ports:
+      - 6378:6379 # expose redis server outside the swarm on port 6378
+    volumes:
+      - ../.data/redis/:/data
+    entrypoint: redis-server --appendonly yes
+  mysql:
+    profiles: ["infra"]
+    image: mysql:5.7 # compatible version with the RDS Aurora we use
+    restart: always
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_bin --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    ports:
+      - 3305:3306 # expose mysql server outside the swarm on port 3305
+    volumes:
+      - ../.data/mysql/:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
