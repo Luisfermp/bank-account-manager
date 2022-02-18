@@ -1,7 +1,7 @@
 /* eslint-disable jest/no-hooks */
 import RedisFactory from '@shared/infrastructure/persistence/redis/redisFactory';
 import AccountIdMother from '@backoffice/accounts/__mothers__/accountId.mother';
-import RedisAccountRepository, { composeAccountKey } from '@backoffice/accounts/infrastructure/persistence/redisAccountRepository';
+import RedisAccountRepository, { composeAccountKey } from '@backoffice/accounts/infrastructure/redis/persistence/redisAccountRepository';
 import RedisRepository from '@shared/infrastructure/persistence/redis/redisRepository';
 import { RedisClientType } from 'redis';
 import AccountMother from '@backoffice/accounts/__mothers__/account.mother';
