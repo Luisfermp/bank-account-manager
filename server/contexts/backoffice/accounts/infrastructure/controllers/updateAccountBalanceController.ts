@@ -1,12 +1,12 @@
 import BaseController from '@shared/infrastructure/infrastructure/express/baseController';
-import UpdateBalanceCommandHandler from '@backoffice/accounts/application/update/updateBalanceCommandHandler';
+import UpdateAccountBalanceCommandHandler from '@backoffice/accounts/application/update/updateAccountBalanceCommandHandler';
 import { Request, Response } from 'express';
-import UpdateBalanceCommand from '@backoffice/accounts/application/update/updateBalanceCommand';
+import UpdateAccountBalanceCommand from '@backoffice/accounts/application/update/updateAccountBalanceCommand';
 
 export default class UpdateAccountBalanceController extends BaseController {
-    #handler: UpdateBalanceCommandHandler;
+    #handler: UpdateAccountBalanceCommandHandler;
 
-    constructor(handler: UpdateBalanceCommandHandler) {
+    constructor(handler: UpdateAccountBalanceCommandHandler) {
         super();
         this.#handler = handler;
     }
@@ -14,7 +14,7 @@ export default class UpdateAccountBalanceController extends BaseController {
     async runOperation(req: Request, res: Response): Promise<void> {
         const accountId = parseInt(req.params.id, 10),
             { amount } = req.body,
-            command = new UpdateBalanceCommand({ accountId, amount });
+            command = new UpdateAccountBalanceCommand({ accountId, amount });
         await this.#handler.handle(command);
         res.status(200).end();
     }

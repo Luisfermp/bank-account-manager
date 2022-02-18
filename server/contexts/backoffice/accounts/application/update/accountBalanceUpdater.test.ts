@@ -1,5 +1,5 @@
 import AccountBalanceUpdater from '@backoffice/accounts/application/update/accountBalanceUpdater';
-import UpdateBalanceCommandHandler from '@backoffice/accounts/application/update/updateBalanceCommandHandler';
+import UpdateAccountBalanceCommandHandler from '@backoffice/accounts/application/update/updateAccountBalanceCommandHandler';
 import AccountRepositoryMock from '@backoffice/accounts/__mocks__/accountRepository.mock';
 import UpdateAccountBalanceCommandMother from '@backoffice/accounts/__mothers__/updateAccountBalanceCommandMother';
 import EventBusMock from '@shared/__mocks__/eventBus.mock';
@@ -16,7 +16,7 @@ describe('accountBalanceUpdater', () => {
             command = UpdateAccountBalanceCommandMother.randomWithPositiveAmount(),
             account = AccountMother.random(),
             updater = new AccountBalanceUpdater(repository, bus),
-            handler = new UpdateBalanceCommandHandler(updater),
+            handler = new UpdateAccountBalanceCommandHandler(updater),
             expected = AccountMother.random({
                 id: account.id,
                 balance: BalanceMother.create(account.balance.value + command.amount)
@@ -36,7 +36,7 @@ describe('accountBalanceUpdater', () => {
             command = UpdateAccountBalanceCommandMother.randomWithPositiveAmount(),
             account = AccountMother.random(),
             updater = new AccountBalanceUpdater(repository, bus),
-            handler = new UpdateBalanceCommandHandler(updater);
+            handler = new UpdateAccountBalanceCommandHandler(updater);
 
         repository.whenGetThenReturn(account);
 

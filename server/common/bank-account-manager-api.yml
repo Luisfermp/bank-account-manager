@@ -132,7 +132,7 @@ paths:
 components:
   parameters:
     AccountId:
-      name: accountId
+      name: id
       in: path
       description: Account Id number
       required: true

@@ -3,10 +3,10 @@ import AccountBalanceUpdater from '@backoffice/accounts/application/update/accou
 import Command from '@shared/domain/bus/command/command';
 import { CommandHandler } from '@shared/domain/bus/command/commandHandler';
 import Amount from '@backoffice/accounts/domain/amount';
-import UpdateBalanceCommand from '@backoffice/accounts/application/update/updateBalanceCommand';
+import UpdateAccountBalanceCommand from '@backoffice/accounts/application/update/updateAccountBalanceCommand';
 import AccountId from '@backoffice/accounts/domain/accountId';
 
-export default class UpdateBalanceCommandHandler implements CommandHandler<UpdateBalanceCommand> {
+export default class UpdateAccountBalanceCommandHandler implements CommandHandler<UpdateAccountBalanceCommand> {
     private updater: AccountBalanceUpdater;
 
     constructor(updater: AccountBalanceUpdater) {
@@ -14,10 +14,10 @@ export default class UpdateBalanceCommandHandler implements CommandHandler<Updat
     }
 
     subscribedTo(): Command {
-        return UpdateBalanceCommand;
+        return UpdateAccountBalanceCommand;
     }
 
-    async handle(command: UpdateBalanceCommand): Promise<void> {
+    async handle(command: UpdateAccountBalanceCommand): Promise<void> {
         const accountId = new AccountId(command.accountId),
             amount = new Amount(command.amount);
 
