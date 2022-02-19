@@ -1,21 +1,31 @@
 {
+    "clearMocks": true,
+    "resetMocks": true,
+    "restoreMocks": true,
+    "collectCoverage": true,
     "cacheDirectory": ".tmp/jestCache",
+    "verbose": true,
     "collectCoverageFrom": [
         "**/*.{ts,tsx}",
+        "!**/build.{ts,tsx}",
+        "!**/server/index.{ts,tsx}",
         "!**/node_modules/**",
-        "!src/apps/**",
+        "!**/persistence/**",
         "!**/*.test.{ts,tsx}",
-        "!**/*.mock.{ts,tsx}",
-        "!**/*.mother.{ts,tsx}"
+        "!**/__mothers__/**",
+        "!**/__mocks__/**",
+        "!**/infrastructure/**",
+        "!**/server/common/**",
+        "!dist/**"
     ],
     "coverageDirectory": "./reports/coverage",
     "coverageReporters": ["lcov", "text-summary"],
     "coverageThreshold": {
         "global": {
-            "branches": 95,
-            "functions": 95,
-            "lines": 95,
-            "statements": 95
+            "branches": 80,
+            "functions": 80,
+            "lines": 80,
+            "statements": 80
         }
     },
     "moduleNameMapper": {

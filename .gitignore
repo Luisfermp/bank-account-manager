@@ -795,3 +795,4 @@ FodyWeavers.xsd
 
 #Avoid to upload npm installation dependencies files
 package-lock.json
+reports/.DS_Store

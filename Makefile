@@ -26,7 +26,6 @@ build: test
 # Run tests
 .PHONY = test
 test: deps start_database
-	./scripts/wait_for_elasticsearch.sh http://localhost:9200
 	yarn test
 
 # Clean containers
