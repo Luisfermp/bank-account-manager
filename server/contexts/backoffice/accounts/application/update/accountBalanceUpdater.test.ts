@@ -7,6 +7,7 @@ import AccountMother from '@backoffice/accounts/__mothers__/account.mother';
 import AccountIdMother from '@backoffice/accounts/__mothers__/accountId.mother';
 import BalanceMother from '@backoffice/accounts/__mothers__/balance.mother';
 import AccountBalanceUpdatedDomainEvent from '@backoffice/accounts/domain/accountBalanceUpdated';
+import AccountNotFound from '@backoffice/accounts/domain/accountNotFound';
 
 describe('accountBalanceUpdater', () => {
     it('should update the balance', async () => {
@@ -27,6 +28,18 @@ describe('accountBalanceUpdater', () => {
         await expect(handler.handle(command)).resolves.toBeUndefined();
         repository.assertGetIsCalled(AccountIdMother.create(command.accountId));
         repository.assertSaveIsCalledWith(expected);
+    });
+
+    it('should throw AccountNotFound when balance doesn\'t exist', async () => {
+        expect.hasAssertions();
+        const repository = new AccountRepositoryMock(),
+            bus = new EventBusMock(),
+            command = UpdateAccountBalanceCommandMother.randomWithPositiveAmount(),
+            updater = new AccountBalanceUpdater(repository, bus),
+            handler = new UpdateAccountBalanceCommandHandler(updater);
+
+        await expect(handler.handle(command)).rejects.toThrow(AccountNotFound);
+        repository.assertGetIsCalled(AccountIdMother.create(command.accountId));
     });
 
     it('should publish AccountBalanceUpdatedDomainEvent', async () => {
