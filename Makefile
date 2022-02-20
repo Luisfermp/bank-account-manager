@@ -23,6 +23,15 @@ endif
 build: test
 	yarn build
 
+# Execute the app
+.PHONY = start
+start: start_database build
+	yarn start
+# Execute the app on dev mode
+.PHONY = start_dev
+start_dev: start_database
+	yarn dev
+
 # Run tests
 .PHONY = test
 test: deps start_database
