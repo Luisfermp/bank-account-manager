@@ -57,7 +57,7 @@
   "scripts": {
     "postinstall": "npx husky install",
     "build:clean": "rm -rf dist; exit 0",
-    "build": "yarn build:clean && ts-node build.ts && tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./server -o ./dist",
+    "build": "yarn build:clean && ts-node build.ts && tsc --project tsconfig-build.json && tscpaths -p tsconfig-build.json -s ./server -o ./dist",
     "dev": "nodemon server/index.ts | pino-pretty",
     "dev:debug": "nodemon --exec \"node -r ts-node/register --inspect-brk\" server/index.ts | pino-pretty",
     "lint": "npx eslint --cache --ext .js,ts .",
