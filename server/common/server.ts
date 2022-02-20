@@ -16,10 +16,10 @@ import { RedisClientType } from 'redis';
 const app = express();
 
 export default class ExpressServer {
-    private routes: Router[];
+    #routes: Router[];
 
     constructor() {
-        this.routes = [];
+        this.#routes = [];
         const root = path.normalize(`${__dirname}/../..`);
         app.use(bodyParser.json({ limit: process.env.REQUEST_LIMIT || '100kb' }));
         app.use(
@@ -53,13 +53,13 @@ export default class ExpressServer {
             eventBus = new InMemorySyncEventBus(),
             redisAccountRepository = new RedisAccountRepository(redisClient as RedisClientType);
 
-        this.routes.push(initAccountInfra(redisAccountRepository, eventBus));
+        this.#routes.push(initAccountInfra(redisAccountRepository, eventBus));
 
         return this;
     }
 
     router(): ExpressServer {
-        this.routes.forEach((r) => {
+        this.#routes.forEach((r) => {
             app.use(r);
         });
 

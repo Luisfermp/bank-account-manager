@@ -16,8 +16,8 @@ export default abstract class RedisRepository {
                 .filter(([_key, value]) => value != null)
                 .reduce((list, [key, value]) => {
                     const val = value as any,
-                        normValue = typeof val.toString === 'function'
-                            ? val.toString()
+                        normValue = typeof val === 'object'
+                            ? JSON.stringify(val)
                             : val;
 
                     return list.concat(key as any, normValue);

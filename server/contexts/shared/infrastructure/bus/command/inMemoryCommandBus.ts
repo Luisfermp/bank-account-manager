@@ -3,14 +3,14 @@ import { CommandBus } from '@shared/domain/bus/command/commandBus';
 import CommandHandlersInformation from '@shared/infrastructure/bus/command/commandHandlersInformation';
 
 export default class InMemoryCommandBus implements CommandBus {
-    private commandHandlersInformation: CommandHandlersInformation;
+    #commandHandlersInformation: CommandHandlersInformation;
 
     constructor(commandHandlersInformation: CommandHandlersInformation) {
-        this.commandHandlersInformation = commandHandlersInformation;
+        this.#commandHandlersInformation = commandHandlersInformation;
     }
 
     async dispatch(command: Command): Promise<void> {
-        const handler = this.commandHandlersInformation.search(command);
+        const handler = this.#commandHandlersInformation.search(command);
 
         await handler.handle(command);
     }

@@ -3,5 +3,5 @@ import { DomainEvent, DomainEventClass } from '@shared/domain/bus/event/domainEv
 export interface DomainEventSubscriber<T extends DomainEvent> {
     subscribedTo(): Array<DomainEventClass>;
 
-    on(domainEvent: T): void;
+    on(domainEvent: T): Promise<void>;
 }

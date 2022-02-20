@@ -7,13 +7,18 @@ import express, { Router } from 'express';
 import AccountRepository from '@backoffice/accounts/domain/accountRepository';
 import AccountBalanceCreator from '@backoffice/accounts/application/create/accountBalanceCreator';
 import CreateBalanceCommandHandler from '@backoffice/accounts/application/create/createBalanceCommandHandler';
-import { EventBus } from '@shared/domain/bus/event/eventBus';
 import CreateAccountBalanceController from '@backoffice/accounts/infrastructure/controllers/createAccountBalanceController';
 import GetAccountBalanceController from '@backoffice/accounts/infrastructure/controllers/getAccountBalanceController';
+import SaveAccountSummaryOnAccountBalanceSaved from '@backoffice/accounts/application/save/saveAccountSummaryOnAccountBalanceSaved';
+import AccountSummarySaver from '@backoffice/accounts/application/save/accountSummarySaver';
+import AccountSummaryFinder from '@backoffice/accounts/application/find/accountSummaryFinder';
+import FindAccountSummaryQueryHandler from '@backoffice/accounts/application/find/findAccountSummaryQueryHandler';
+import GetAccountBalanceSummaryController from '@backoffice/accounts/infrastructure/controllers/getAccountBalanceSummaryController';
+import InMemorySyncEventBus from '@shared/infrastructure/bus/event/inMemorySyncEventBus';
 
 export default function initAccountInfra(
     repository: AccountRepository,
-    bus: EventBus
+    bus: InMemorySyncEventBus
 ): Router {
     const creator = new AccountBalanceCreator(repository, bus),
         updater = new AccountBalanceUpdater(repository, bus),
@@ -21,17 +26,28 @@ export default function initAccountInfra(
         createBalanceController = new CreateAccountBalanceController(
             createBalanceCommandHandler
         ),
-        updateAcountBalanceCommandHandler = new UpdateAccountBalanceCommandHandler(updater),
-        updateAccountBalanceController = new UpdateAccountBalanceController(updateAcountBalanceCommandHandler),
+        updateAccountBalanceCommandHandler = new UpdateAccountBalanceCommandHandler(updater),
+        updateAccountBalanceController = new UpdateAccountBalanceController(updateAccountBalanceCommandHandler),
         accountBalanceFinder = new AccountBalanceFinder(repository),
         findAccountBalanceQueryHandler = new FindAccountBalanceQueryHandler(accountBalanceFinder),
-        getAccountBalanceController = new GetAccountBalanceController(findAccountBalanceQueryHandler);
+        getAccountBalanceController = new GetAccountBalanceController(findAccountBalanceQueryHandler),
+        accountSummaryFinder = new AccountSummaryFinder(repository),
+        findAccountSummaryQueryHandler = new FindAccountSummaryQueryHandler(accountSummaryFinder),
+        getAccountBalanceSummaryController = new GetAccountBalanceSummaryController(findAccountSummaryQueryHandler),
+        accountSummarySaver = new AccountSummarySaver(repository),
+        saveAccountSummaryOnAccountBalanceSaver = new SaveAccountSummaryOnAccountBalanceSaved(accountSummarySaver);
+
+    bus.addSubscribers([saveAccountSummaryOnAccountBalanceSaver]);
 
     return express
         .Router()
         .get(
             '/api/v1/accounts/:id',
             getAccountBalanceController.run.bind(getAccountBalanceController)
+        )
+        .get(
+            '/api/v1/accounts/:id/summary',
+            getAccountBalanceController.run.bind(getAccountBalanceSummaryController)
         )
         .post(
             '/api/v1/accounts/:id',

@@ -44,7 +44,6 @@ module.exports = {
             'error',
             {
                 devDependencies: [
-                    '**/webpack.config.js',
                     '**/*.test.ts',
                     '**/*.mock.ts',
                     '**/*.mother.ts',

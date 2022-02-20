@@ -1,18 +1,18 @@
 import { DomainEvent } from '@shared/domain/bus/event/domainEvent';
 
 export default abstract class AggregateRoot {
-    private domainEvents: Array<DomainEvent>;
+    #domainEvents: Array<DomainEvent>;
 
     constructor() {
-        this.domainEvents = [];
+        this.#domainEvents = [];
     }
 
     pullDomainEvents(): Array<DomainEvent> {
-        return this.domainEvents;
+        return this.#domainEvents;
     }
 
     record(event: DomainEvent): void {
-        this.domainEvents.push(event);
+        this.#domainEvents.push(event);
     }
 
     abstract toPrimitives(): any;

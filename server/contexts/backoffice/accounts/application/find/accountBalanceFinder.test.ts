@@ -3,7 +3,7 @@ import AccountNotFound from '@backoffice/accounts/domain/accountNotFound';
 import AccountBalanceFinder from '@backoffice/accounts/application/find/accountBalanceFinder';
 import FindAccountBalanceQueryHandler from '@backoffice/accounts/application/find/findAccountBalanceQueryHandler';
 import AccountRepositoryMock from '@backoffice/accounts/__mocks__/accountRepository.mock';
-import FindAccountBalanceQueryMother from '@backoffice/accounts/__mothers__/findAccountBalanceCommand.mother';
+import FindAccountBalanceQueryMother from '@backoffice/accounts/__mothers__/findAccountBalanceQuery.mother';
 
 describe('accountBalanceFinder', () => {
     it('should throw AccountNotFound when the account to find doesn\'t exists', async () => {

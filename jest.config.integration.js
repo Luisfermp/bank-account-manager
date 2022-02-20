@@ -8,6 +8,7 @@ delete globalJest.testPathIgnorePatterns;
 
 module.exports = {
     ...globalJest,
+    collectCoverage: false,
     testTimeout: 30000,
     testMatch: ['**/persistence/**/*.test.ts'],
     ...jestTestContainersPreset

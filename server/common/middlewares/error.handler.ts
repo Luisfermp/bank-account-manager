@@ -4,9 +4,11 @@ import AccountFound from '@backoffice/accounts/domain/accountFound';
 import InvalidArgumentError from '@shared/domain/invalidArgumentError';
 import CommandNotRegisteredError from '@shared/domain/bus/command/commandNotRegisteredError';
 import CustomError from '@shared/domain/customError';
+import AccountSummaryNotFound from '@backoffice/accounts/domain/accountSummaryNotFound';
 
 const errorCodeDiccionary = {
     [AccountNotFound.ACCOUNT_NOT_FOUND_CODE]: 404,
+    [AccountSummaryNotFound.ACCOUNT_NOT_FOUND_CODE]: 404,
     [AccountFound.ACCOUNT_FOUND_CODE]: 400,
     [InvalidArgumentError.INVALID_ARGUMENT_ERROR_CODE]: 400,
     [CommandNotRegisteredError.COMMAND_NOT_REGISTERED_ERROR_CODE]: 500
