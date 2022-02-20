@@ -1,6 +1,6 @@
 import CreateBalanceCommand from '@backoffice/accounts/application/create/createBalanceCommand';
 import CreateBalanceCommandHandler from '@backoffice/accounts/application/create/createBalanceCommandHandler';
-import BaseController from '@shared/infrastructure/infrastructure/express/baseController';
+import BaseController from '@shared/infrastructure/infrastructure/controller/baseController';
 import { Request, Response } from 'express';
 
 export default class CreateAccountBalanceController extends BaseController {

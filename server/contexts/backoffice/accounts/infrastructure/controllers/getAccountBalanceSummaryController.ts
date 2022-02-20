@@ -1,4 +1,4 @@
-import BaseController from '@shared/infrastructure/infrastructure/express/baseController';
+import BaseController from '@shared/infrastructure/infrastructure/controller/baseController';
 import { Request, Response } from 'express';
 import FindAccountSummaryQueryHandler from '@backoffice/accounts/application/find/findAccountSummaryQueryHandler';
 import FindAccountSummaryQuery from '@backoffice/accounts/application/find/findAccountSummaryQuery';

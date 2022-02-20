@@ -1,4 +1,4 @@
-import BaseController from '@shared/infrastructure/infrastructure/express/baseController';
+import BaseController from '@shared/infrastructure/infrastructure/controller/baseController';
 import UpdateAccountBalanceCommandHandler from '@backoffice/accounts/application/update/updateAccountBalanceCommandHandler';
 import { Request, Response } from 'express';
 import UpdateAccountBalanceCommand from '@backoffice/accounts/application/update/updateAccountBalanceCommand';

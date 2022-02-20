@@ -1,5 +1,5 @@
 import FindAccountBalanceQueryHandler from '@backoffice/accounts/application/find/findAccountBalanceQueryHandler';
-import BaseController from '@shared/infrastructure/infrastructure/express/baseController';
+import BaseController from '@shared/infrastructure/infrastructure/controller/baseController';
 import { Request, Response } from 'express';
 import FindAccountBalanceQuery from '@backoffice/accounts/application/find/findAccountBalanceQuery';
 
