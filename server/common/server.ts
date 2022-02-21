@@ -3,6 +3,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import http from 'http';
 import os from 'os';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import * as OpenApiValidator from 'express-openapi-validator';
 import l from '@shared/infrastructure/logger';
@@ -21,6 +22,7 @@ export default class ExpressServer {
     constructor() {
         this.#routes = [];
         const root = path.normalize(`${__dirname}/../..`);
+        app.use(cors());
         app.use(bodyParser.json({ limit: process.env.REQUEST_LIMIT || '100kb' }));
         app.use(
             bodyParser.urlencoded({
