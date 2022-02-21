@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  redis:
+    profiles: ["infra"]
+    image: redis
+    restart: always
+    ports:
+      - 6378:6379 # expose redis server outside the swarm on port 6378
+    volumes:
+      - ../.data/redis/:/data
+    entrypoint: redis-server --appendonly yes

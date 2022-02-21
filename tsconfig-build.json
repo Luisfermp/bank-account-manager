@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "extends": "./tsconfig",
+  "include": ["server/**/*.ts"],
+  "exclude": [
+    "./**/*.test.ts",
+    "./**/__mocks__/*",
+    "./**/__mothers__/*"
+  ]
+}

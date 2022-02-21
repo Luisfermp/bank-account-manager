@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: Comalatech Bank Account Manager
+  description: API Rest Used to manage bank account balance
+  version: 1.0.0
+servers:
+- url: /api/v1
+tags:
+- name: Accounts
+  description: All accounts endpoints
+- name: Specification
+  description: The swagger API specification
+paths:
+  /accounts/{id}:
+    get:
+      operationId: getAccountBalance
+      tags:
+      - Accounts
+      description: Fetch an account balance
+      responses:
+        200:
+          description: Returns the given account current balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        404:
+          description: Whenever the account doesn't exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountNotFoundResponse'
+        500:
+          description: When an unknown error happens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+    post:
+      operationId: createAccountBalance
+      tags:
+      - Accounts
+      description: Create a new account balance
+      requestBody:
+        description: account balance
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - balance
+              properties:
+                balance:
+                  type: number
+                  example: 4587.15
+        required: true
+      responses:
+        201:
+          description: Account Balance Created
+        400:
+          description: Whenever the account doesn't exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountFoundResponse'
+    put:
+      operationId: updateAccountBalance
+      tags:
+      - Accounts
+      description: Update an account balance
+      requestBody:
+        description: new amount
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+              properties:
+                amount:
+                  type: number
+                  example: 4587.15
+        required: true
+      responses:
+        201:
+          description: Account Balance Created
+        404:
+          description: Whenever the account doesn't exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountNotFoundResponse'
+  /accounts/{id}/summary:
+    get:
+      operationId: getAccountBalanceSummary
+      tags:
+      - Accounts
+      description: Fetch an account balance summary
+      responses:
+        200:
+          description: Returns the given account current balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountSummary'
+        404:
+          description: Whenever the account doesn't exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountNotFoundResponse'
+        500:
+          description: When an unknown error happens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+  
+  
+  /spec:
+    get:
+      tags:
+      - Specification
+      responses:
+        200:
+          description: Return the API specification
+          content: {}
+components:
+  parameters:
+    AccountId:
+      name: id
+      in: path
+      description: Account Id number
+      required: true
+      schema: 
+        type: integer
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+        - message
+        - name
+        - code
+      type: object
+      properties:
+        message:
+          type: string
+          example: Internal Server Error
+        name:
+          type: string
+          example: InternalServerError
+        code:
+          type: integer
+          example: 500
+    AccountFoundResponse:
+      title: AccountFoundResponse
+      required:
+        - message
+        - name
+        - code
+      type: object
+      properties:
+        message:
+          type: string
+          example: Account 123456 exists
+        name:
+          type: string
+          example: AccountFound
+        code:
+          type: integer
+          example: 10001
+    AccountNotFoundResponse:
+      title: AccountNotFoundResponse
+      required:
+        - message
+        - name
+        - code
+      type: object
+      properties:
+        message:
+          type: string
+          example: Account 123456 doesn't exist
+        name:
+          type: string
+          example: AccountNotFound
+        code:
+          type: integer
+          example: 10002
+    Account:
+      title: Account
+      required:
+        - id
+        - balance
+        - updatedAt
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123456
+        balance:
+          type: number
+          example: 755.5
+        updatedAt:
+          type: string
+          example: '2011-10-05T14:48:00.000Z'
+    AccountSummary:
+      title: AccountSummary
+      type: array
+      items:
+        type: object
+        required:
+        - balance
+        - amount
+        - date
+        properties:
+          balance:
+            type: integer
+            example: 725.50
+          amount:
+            type: number
+            example: -25.5
+          date:
+            type: string
+            example: '2011-10-05T14:48:00.000Z'
